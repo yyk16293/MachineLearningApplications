@@ -1,3 +1,5 @@
+## Simple Linear Regression Y = mX + c form
+
 import numpy as np
 import math
 import pandas as pd
@@ -11,19 +13,23 @@ bedrooms = training_data_frame['bedrooms']
 #print data_frame['sq']
 
 def getIntercept(input_feature,output):
+     """
+     returns the intercept
+     :param input_feature: the input feature selected
+     :param output: target feature
+     :return:
+     """
+     training_data_frame[output].mean() - getSlope(input_feature, output) * training_data_frame[input_feature].mean()
 
-    #print 'hahahahaha'
-    #print training_data_frame[output].mean(), training_data_frame[input_feature].mean()
-    return training_data_frame[output].mean() - getSlope(input_feature, output) * training_data_frame[input_feature].mean()
-
-#gives the slope of the line we are fitting
 def getSlope(input_feature,output):
-    XY_datapoints = []
+    """
+    returns the slope of the line we are trying to fit
+    :param input_feature: the input featuer selected
+    :param output: target feature
+    :return:
+    """
     training_data_frame['XY'] = training_data_frame[input_feature] * training_data_frame[output]
     training_data_frame['X_2'] = training_data_frame[input_feature] ** 2
-
-    #for i in range(0,len(X_datapoints)):
-    #    XY_datapoints.append(X_datapoints[i]*Y_datapoints[i])
 
     Mean_X = training_data_frame[input_feature].mean()
     Mean_Y = training_data_frame[output].mean()
@@ -33,7 +39,6 @@ def getSlope(input_feature,output):
     Numerator = Mean_XY - (Mean_X * Mean_Y)
     Denominator = Mean_XSquare - (Mean_X * Mean_X)
 
-    #print Numerator, Denominator
     return Numerator/Denominator
 
 def simpleLinearRegression(input_feature,output):
@@ -43,6 +48,9 @@ def get_regression_predictions(input_feature, intercept, slope):
     training_data_frame['predictions'] = training_data_frame[input_feature] * slope + intercept
 
 def get_residual_sum_of_squares(input_feature, output, intercept,slope):
+    """
+    returns the residual sum of squares error
+    """
     get_regression_predictions(input_feature,intercept,slope)
     training_data_frame['rss'] = (training_data_frame['predictions'] - training_data_frame[output]) ** 2
     return training_data_frame['rss'].sum()
