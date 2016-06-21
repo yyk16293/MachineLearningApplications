@@ -45,6 +45,10 @@ def simpleLinearRegression(input_feature,output):
     return (getIntercept(input_feature,output), getSlope(input_feature,output))
 
 def get_regression_predictions(input_feature, intercept, slope):
+    """
+    adds a new column into training data frame which contains values of predictions for
+    the given input feature
+    """
     training_data_frame['predictions'] = training_data_frame[input_feature] * slope + intercept
 
 def get_residual_sum_of_squares(input_feature, output, intercept,slope):
@@ -64,6 +68,10 @@ def get_residual_sum_of_squares_test(input_feature, output, intercept,slope):
     return testing_data_frame['rss'].sum()
 
 def inverse_regression_predictions(output, intercept, slope):
+    """
+    adds a new column into training data frame which contains values of predictions of input_feature
+    from the obtained slope and intercept
+    """
     training_data_frame['predict_X'] = (training_data_frame[output] - intercept) / slope
 
 ##Model1
@@ -72,7 +80,7 @@ output = 'price'
 sqft_intercept,sqft_slope = simpleLinearRegression('sqft_living','price')
 get_regression_predictions(input_feature,sqft_intercept,sqft_slope)
 req_values = training_data_frame[training_data_frame[input_feature] ==  2650]
-#Q1 printing predictions
+#Q1 printing predictions for house with sqft_living = 2650
 print req_values['predictions']
 
 #Q2 - getting the value of rss
