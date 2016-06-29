@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import math
 
-
 #print math.log(1180)
 training_data_frame = pd.read_csv('kc_house_train_data.csv')
 testing_data_frame = pd.read_csv('kc_house_test_data.csv')
@@ -28,11 +27,6 @@ Model_3 = ['sqft_living', 'bedrooms', 'bathrooms', 'lat','long', 'bed_bath_rooms
 Model_1_X = np.array(training_data_frame[Model_1])
 Model_2_X = np.array(training_data_frame[Model_2])
 Model_3_X = np.array(training_data_frame[Model_3])
-
-a = np.array([[1,2,3,4],[2,3,4,5],[3,4,5,6]])
-#print a.shape
-b = np.array([[1],[1],[1]])
-#print b.shape
 
 #print Model_1_X.shape
 #print np.ones((len(a),1)).shape
