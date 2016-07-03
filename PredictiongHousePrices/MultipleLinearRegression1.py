@@ -28,16 +28,11 @@ Model_1_X = np.array(training_data_frame[Model_1])
 Model_2_X = np.array(training_data_frame[Model_2])
 Model_3_X = np.array(training_data_frame[Model_3])
 
-#print Model_1_X.shape
-#print np.ones((len(a),1)).shape
-#print np.hstack((a,b))
-#print Model_1_A.shape
 Model_1_A = np.hstack((Model_1_X, np.ones((len(Model_1_X),1))))
 target = np.array(training_data_frame['price'])
 output = np.linalg.lstsq(Model_1_A, target)
 print output[0]
-#print target.shape
-#print Model_1_A[0]
+
 Model_2_A = np.hstack((Model_2_X, np.ones((len(Model_2_X),1))))
 target = np.array(training_data_frame['price'])
 output = np.linalg.lstsq(Model_2_A, target)
